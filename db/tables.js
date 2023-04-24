@@ -21,10 +21,8 @@ const paymentMethod = `CREATE TABLE IF NOT EXISTS Payment_Method (
 // Create Users table
 const users = `CREATE TABLE IF NOT EXISTS Users (
   UserID VARCHAR(250) PRIMARY KEY,
-  CityID INT REFERENCES Cities (CityID),
-  PaymentID INT REFERENCES Payment_Method (PaymentID),
-  RoleID INT REFERENCES Roles (RoleID),
   Name VARCHAR(255) NOT NULL,
+  Lastname VARCHAR(255) NOT NULL,
   Password VARCHAR(255) NOT NULL,
   EmailAddress VARCHAR(255) NOT NULL UNIQUE,
   Phone Char(20),
@@ -99,15 +97,15 @@ const meals = `CREATE TABLE IF NOT EXISTS Meals (
 )`;
 
 export default {
-	rolesTable,
-	citiesTable,
-	paymentMethod,
-	users,
-	types,
-	leaseTeam,
-	workspaces,
-	booking,
-	images,
-	workspacesImage,
-  meals
+  rolesTable,
+  citiesTable,
+  paymentMethod,
+  users,
+  types,
+  leaseTeam,
+  workspaces,
+  booking,
+  images,
+  workspacesImage,
+  meals,
 };
