@@ -16,6 +16,7 @@ db.serialize(() => {
 	db.run(tables.booking);
 	db.run(tables.images);
 	db.run(tables.workspacesImage);
+	db.run(tables.meals);
 
 	// Insert data to Roles catalog
 	["Owner", "Coworker", "Master"].map((item) =>
@@ -62,6 +63,7 @@ db.serialize(() => {
 			columnsValue: [uuidv4(), null, null, role.RoleID, `Group Master`, "admin2022", "admin@admin.com", null, 1]
 		});
 	});
+
 });
 
 export function queryInsert(props) {
@@ -82,5 +84,27 @@ export function querySelect(query, callback) {
 		callback(JSON.stringify(rows));
 	});
 }
+
+//function that update attributes.
+export function queryUpdate(props) {
+  const { table, fields, fieldsValue, whereCondition } = props;
+  const values = fields.map((item) => `${item} = ?`).join(', ');
+  const sql = `UPDATE ${table} SET ${values} WHERE ${whereCondition}`;
+  db.run(sql, fieldsValue, (err) => {
+    if (err) return console.error(err.message);
+    return 'queryUpdate done';
+  });
+}
+
+//function that update attributes.
+export function queryDelete(id, table, conditionParam) {
+  const sql = `DELETE FROM ${table} WHERE ${conditionParam} = ?`;
+  db.run(sql, `${id}`, function (err) {
+    if (err) {
+      return console.error(err.message);
+    }
+  });
+}
+
 
 export default db;

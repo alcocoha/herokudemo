@@ -7,6 +7,7 @@ import registersRoute from "./routes/register.js";
 import workspacesRoute from "./routes/workspaces.js";
 import catalogsRoute from "./routes/catalogs.js";
 import loginRoute from "./routes/login.js";
+import mealsRoute from "./routes/meals.js";
 
 const app = express();
 const PORT = process.env.PORT || 5001
@@ -18,6 +19,7 @@ app.use("/registers", registersRoute);
 app.use("/workspaces", workspacesRoute);
 app.use("/catalogs", catalogsRoute);
 app.use("/login", loginRoute);
+app.use("/meals", mealsRoute);
 
 app.get("/", (req, res) => {
 	res.send("Server working!");

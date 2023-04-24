@@ -89,6 +89,15 @@ const workspacesImage = `CREATE TABLE IF NOT EXISTS Workspaces_Image (
   WorkspaceID int REFERENCES Workspaces (WorkspaceID) ON DELETE CASCADE
 )`;
 
+const meals = `CREATE TABLE IF NOT EXISTS Meals (
+  MealID VARCHAR(250) PRIMARY KEY,
+  Title VARCHAR(250),
+  Description VARCHAR(250),
+  Image TEXT,
+  Price Money,
+  AdditionalInfo TEXT
+)`;
+
 export default {
 	rolesTable,
 	citiesTable,
@@ -99,5 +108,6 @@ export default {
 	workspaces,
 	booking,
 	images,
-	workspacesImage
+	workspacesImage,
+  meals
 };
