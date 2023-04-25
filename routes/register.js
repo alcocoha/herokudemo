@@ -10,7 +10,18 @@ const registersRoute = express.Router();
  */
 registersRoute.post('/create', function (req, res) {
   const { name, lastname, email, password, phone } = req.body;
-
+  if (
+    name === '' ||
+    lastname === '' ||
+    email === '' ||
+    password === '' ||
+    phone === ''
+  ) {
+    return res.json({
+      status: 'error',
+      message: 'You need to add your data',
+    });
+  }
   // Here we need to get roles
   querySelect('SELECT * FROM Users', (users) => {
     const userExist = JSON.parse(users).find(
